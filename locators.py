@@ -22,6 +22,14 @@ class LoginFormLocators:
 class MainPageLocators:
     LOGIN_ACCOUNT_BUTTON = By.XPATH, '//button[text()="Войти в аккаунт"]'
     PLACE_ORDER_BUTTON = By.XPATH, '//button[text()="Оформить заказ"]'
+
+    BREADS_BUTTON = By.XPATH, '//div[span[text()="Булки"]]'
+    SAUCES_BUTTON = By.XPATH, '//div[span[text()="Соусы"]]'
+    TOPPINGS_BUTTON = By.XPATH, '//div[span[text()="Начинки"]]'
+
+    BREADS_TITTLE = By.XPATH, '//h2[text()="Булки"]'
+    SAUCES_TITTLE = By.XPATH, '//h2[text()="Соусы"]'
+    TOPPINGS_TITTLE = By.XPATH, '//h2[text()="Начинки"]'
     
 class PasswordRecoveryFormLocators:
     LOGIN_BUTTON = By.XPATH, '//a[@href="/login"]'

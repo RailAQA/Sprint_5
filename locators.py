@@ -29,6 +29,7 @@ class PasswordRecoveryFormLocators:
 
 class PersonalAccountLocator:
     SAVE_BUTTON = By.XPATH, '//button[text()="Сохранить"]'
+    LOGOUT_BUTTON = By.XPATH, '//button[text()="Выход"]'
 
 class OrderFeedLocators:
     ORDER_FEED_TITTLE = By.XPATH, '//h1[text()="Лента заказов"]'

@@ -51,6 +51,6 @@ def test_with_wrong_password(driver, wrong_password):
     registration_button = driver.find_element(*RegistrationFormLocators().REGISTRATION_BUTTON)
     registration_button.click()
 
-    error_alert = WebDriverWait(driver, 3).until(EC.visibility_of_element_located(LoginFormLocators.PASSWORD_ERROR_ALERT))
+    error_alert = WebDriverWait(driver, 3).until(EC.visibility_of_element_located(RegistrationFormLocators().PASSWORD_ERROR_ALERT))
     assert error_alert.is_displayed()
     assert error_alert.text == "Некорректный пароль"

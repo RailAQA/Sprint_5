@@ -1,8 +1,8 @@
-from tools.generator import generate_email, generate_valid_password
+from tools.generator import generate_email, generate_valid_password, generate_wrong_password_with_1_symbol, generate_wrong_password_with_4_symbols, generate_wrong_password_with_5_symbols
 from locators import GeneralLocators, RegistrationFormLocators, LoginFormLocators
 
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
+import pytest
 from selenium.webdriver.support.ui import WebDriverWait
 
 
@@ -27,3 +27,30 @@ def test_successful_registration(driver):
 
     assert driver.current_url == "https://stellarburgers.education-services.ru/login"
 
+@pytest.mark.parametrize(
+        "wrong_password", 
+        (
+              generate_wrong_password_with_1_symbol(),
+                generate_wrong_password_with_4_symbols(),
+                  generate_wrong_password_with_5_symbols()
+                  ))
+def test_with_wrong_password(driver, wrong_password):
+    driver.get("https://stellarburgers.education-services.ru/register")
+    WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
+
+    name_input = driver.find_element(*RegistrationFormLocators().NAME_INPUT)
+    name_input.send_keys('Antonio')
+
+    email_input = driver.find_element(*RegistrationFormLocators().EMAIL_INPUT)
+    random_email = generate_email()
+    email_input.send_keys(random_email)
+
+    password_input = driver.find_element(*RegistrationFormLocators().PASSWORD_INPUT)
+    password_input.send_keys(wrong_password)
+
+    registration_button = driver.find_element(*RegistrationFormLocators().REGISTRATION_BUTTON)
+    registration_button.click()
+
+    error_alert = WebDriverWait(driver, 3).until(EC.visibility_of_element_located(LoginFormLocators.PASSWORD_ERROR_ALERT))
+    assert error_alert.is_displayed()
+    assert error_alert.text == "Некорректный пароль"

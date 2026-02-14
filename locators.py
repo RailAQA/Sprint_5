@@ -12,3 +12,4 @@ class RegistrationFormLocators:
 class LoginFormLocators:
     EMAIL_INPUT = By.XPATH, '//div[@class="input pr-6 pl-6 input_type_text input_size_default"]//input'
     LOGIN_BUTTON = By.XPATH, '//button[text()="Войти"]'
+    PASSWORD_ERROR_ALERT = By.XPATH, '//p[@class="input__error text_type_main-default"]'

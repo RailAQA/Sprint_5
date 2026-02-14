@@ -24,3 +24,9 @@ class MainPageLocators:
 class PasswordRecoveryFormLocators:
     LOGIN_BUTTON = By.XPATH, '//a[@href="/login"]'
     RECOVERY_BUTTON = By.XPATH, '//button[text()="Восстановить"]'
+
+class PersonalAccountLocator:
+    SAVE_BUTTON = By.XPATH, '//button[text()="Сохранить"]'
+
+class OrderFeedLocators:
+    ORDER_FEED_TITTLE = By.XPATH, '//h1[text()="Лента заказов"]'

@@ -2,7 +2,6 @@ from tools.generator import generate_email, generate_valid_password, generate_wr
 from locators import GeneralLocators, RegistrationFormLocators, LoginFormLocators, MainPageLocators, PasswordRecoveryFormLocators
 
 from selenium.webdriver.support import expected_conditions as EC
-import pytest
 from selenium.webdriver.support.ui import WebDriverWait
 
 def test_login_from_login_button(driver):

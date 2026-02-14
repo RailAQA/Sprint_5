@@ -1,17 +1,25 @@
+from faker import Faker
+import time
 import random
 
 
-def generate_email():
-    return f"garipov_rail_41_{random.randrange(100, 999)}@mail.ru"
+def generate_email() -> str:
+    faker = Faker()
+    return f"garipov_rail_41_{faker.email()}"
 
 def generate_valid_password():
-    return f"Passw{random.randint(1, 100000)}"
+    faker = Faker()
+    return f"{faker.password(length=6)}{random.randint(1, 100000)}"
 
 def generate_wrong_password_with_5_symbols():
-    return f"Pass{random.randint(1, 9)}"
+    faker = Faker()
+    return faker.password(length=5)
 
 def generate_wrong_password_with_4_symbols():
-    return f"Pas{random.randint(1, 9)}"
+    faker = Faker()
+    return faker.password(length=4)
 
 def generate_wrong_password_with_1_symbol():
     return random.randint(1, 9)
+
+print(generate_email())

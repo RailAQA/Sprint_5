@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 class GeneralLocators:
     HEADER = By.XPATH, '//header'
     PERSONAL_ACCOUNT_BUTTON = By.XPATH, '//a[@href="/account"]'
+    CONSTRUCTOR_BUTTON =By.XPATH, '//a[@href="/"]'
+    LOGO_BUTTON = By.XPATH, '//div[@class="AppHeader_header__logo__2D0X2"]//a'
 
 class RegistrationFormLocators:
     NAME_INPUT = By.XPATH, '//label[text()="Имя"]/following::input[@class="text input__textfield text_type_main-default"]'

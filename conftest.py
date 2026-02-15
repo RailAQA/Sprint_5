@@ -17,7 +17,8 @@ def driver():
 @pytest.fixture
 def driver_with_state():
     driver = webdriver.Chrome()
-
+    driver.maximize_window()
+    
     driver.get("https://stellarburgers.education-services.ru/register")
     WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
 

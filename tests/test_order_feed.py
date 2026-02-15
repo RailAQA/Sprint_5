@@ -4,8 +4,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import pytest
 from selenium.webdriver.support.ui import WebDriverWait
 
-from time import sleep
-
 
 def test_navigate_from_order_feed_to_personal_account_with_state(driver_with_state):
     driver_with_state.get("https://stellarburgers.education-services.ru/feed")

@@ -1,7 +1,6 @@
-from locators import GeneralLocators, PersonalAccountLocator, OrderFeedLocators, LoginFormLocators, MainPageLocators
+from locators import GeneralLocators, PersonalAccountLocator, LoginFormLocators, MainPageLocators
 
 from selenium.webdriver.support import expected_conditions as EC
-import pytest
 from selenium.webdriver.support.ui import WebDriverWait
 
 

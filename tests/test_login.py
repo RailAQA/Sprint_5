@@ -1,4 +1,4 @@
-from tools.generator import generate_email, generate_valid_password, generate_wrong_password_with_1_symbol, generate_wrong_password_with_4_symbols, generate_wrong_password_with_5_symbols
+from tools.generator import generate_email, generate_valid_password
 from locators import GeneralLocators, RegistrationFormLocators, LoginFormLocators, MainPageLocators, PasswordRecoveryFormLocators
 
 from selenium.webdriver.support import expected_conditions as EC

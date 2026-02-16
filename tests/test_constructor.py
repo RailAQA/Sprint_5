@@ -5,59 +5,60 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 
-def test_navigate_from_constructor_to_personal_account_with_state(driver_with_state):
-    personal_account_button = driver_with_state.find_element(*GeneralLocators().PERSONAL_ACCOUNT_BUTTON)
-    personal_account_button.click()
-    WebDriverWait(driver_with_state, 5).until(EC.visibility_of_element_located(PersonalAccountLocator().SAVE_BUTTON))
+class TestConstructor:
+    def test_navigate_from_constructor_to_personal_account_with_state(self, driver_with_state):
+        personal_account_button = driver_with_state.find_element(*GeneralLocators().PERSONAL_ACCOUNT_BUTTON)
+        personal_account_button.click()
+        WebDriverWait(driver_with_state, 5).until(EC.visibility_of_element_located(PersonalAccountLocator().SAVE_BUTTON))
 
-    assert driver_with_state.current_url == AppRoute.PERSONAL_ACCOUNT
+        assert driver_with_state.current_url == AppRoute.PERSONAL_ACCOUNT
 
-def test_navigate_from_constructor_to_personal_account_without_state(driver):
-    driver.get(AppRoute.CONSTRUCTOR)
-    WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
+    def test_navigate_from_constructor_to_personal_account_without_state(self, driver):
+        driver.get(AppRoute.CONSTRUCTOR)
+        WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
 
-    personal_account_button = driver.find_element(*GeneralLocators().PERSONAL_ACCOUNT_BUTTON)
-    personal_account_button.click()
-    WebDriverWait(driver, 5).until(EC.visibility_of_element_located(LoginFormLocators().LOGIN_BUTTON))
+        personal_account_button = driver.find_element(*GeneralLocators().PERSONAL_ACCOUNT_BUTTON)
+        personal_account_button.click()
+        WebDriverWait(driver, 5).until(EC.visibility_of_element_located(LoginFormLocators().LOGIN_BUTTON))
 
-    assert driver.current_url == AppRoute.LOGIN
+        assert driver.current_url == AppRoute.LOGIN
 
-def test_navigate_to_sauces_section(driver):
-    driver.get(AppRoute.CONSTRUCTOR)
-    WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
+    def test_navigate_to_sauces_section(self, driver):
+        driver.get(AppRoute.CONSTRUCTOR)
+        WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
 
-    sauces_button = driver.find_element(*MainPageLocators().SAUCES_BUTTON)
-    sauces_button.click()
-    WebDriverWait(driver, 5).until(EC.visibility_of_element_located(MainPageLocators().SAUCES_TITTLE))
+        sauces_button = driver.find_element(*MainPageLocators().SAUCES_BUTTON)
+        sauces_button.click()
+        WebDriverWait(driver, 5).until(EC.visibility_of_element_located(MainPageLocators().SAUCES_TITTLE))
 
-    assert "tab_tab_type_current__2BEPc pt-4" in sauces_button.get_attribute("class")
+        assert "tab_tab_type_current__2BEPc pt-4" in sauces_button.get_attribute("class")
 
-def test_default_state_for_breads_button(driver):
-    driver.get(AppRoute.CONSTRUCTOR)
-    WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
+    def test_default_state_for_breads_button(self, driver):
+        driver.get(AppRoute.CONSTRUCTOR)
+        WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
 
-    breads_button = driver.find_element(*MainPageLocators.BREADS_BUTTON)
-    assert "tab_tab_type_current__2BEPc pt-4" in breads_button.get_attribute("class")
+        breads_button = driver.find_element(*MainPageLocators.BREADS_BUTTON)
+        assert "tab_tab_type_current__2BEPc pt-4" in breads_button.get_attribute("class")
 
-def test_navigate_to_toppings_section(driver):
-    driver.get(AppRoute.CONSTRUCTOR)
-    WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
+    def test_navigate_to_toppings_section(self, driver):
+        driver.get(AppRoute.CONSTRUCTOR)
+        WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
 
-    toppings_button = driver.find_element(*MainPageLocators().TOPPINGS_BUTTON)
-    toppings_button.click()
-    WebDriverWait(driver, 5).until(EC.visibility_of_element_located(MainPageLocators().TOPPINGS_TITTLE))
+        toppings_button = driver.find_element(*MainPageLocators().TOPPINGS_BUTTON)
+        toppings_button.click()
+        WebDriverWait(driver, 5).until(EC.visibility_of_element_located(MainPageLocators().TOPPINGS_TITTLE))
 
-    assert "tab_tab_type_current__2BEPc pt-4" in toppings_button.get_attribute("class")
+        assert "tab_tab_type_current__2BEPc pt-4" in toppings_button.get_attribute("class")
 
-def test_navigate_to_breads_section(driver):
-    driver.get(AppRoute.CONSTRUCTOR)
-    WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
+    def test_navigate_to_breads_section(self, driver):
+        driver.get(AppRoute.CONSTRUCTOR)
+        WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
 
-    sauces_button = driver.find_element(*MainPageLocators().SAUCES_BUTTON)
-    sauces_button.click()
+        sauces_button = driver.find_element(*MainPageLocators().SAUCES_BUTTON)
+        sauces_button.click()
 
-    breads_button = driver.find_element(*MainPageLocators.BREADS_BUTTON)
-    breads_button.click()
-    WebDriverWait(driver, 5).until(EC.visibility_of_element_located(MainPageLocators().BREADS_TITTLE))
+        breads_button = driver.find_element(*MainPageLocators.BREADS_BUTTON)
+        breads_button.click()
+        WebDriverWait(driver, 5).until(EC.visibility_of_element_located(MainPageLocators().BREADS_TITTLE))
 
-    assert "tab_tab_type_current__2BEPc pt-4" in breads_button.get_attribute("class")
+        assert "tab_tab_type_current__2BEPc pt-4" in breads_button.get_attribute("class")

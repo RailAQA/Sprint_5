@@ -1,7 +1,7 @@
 from locators import GeneralLocators, PersonalAccountLocator, MainPageLocators, LoginFormLocators
+from tools.routes import AppRoute
 
 from selenium.webdriver.support import expected_conditions as EC
-import pytest
 from selenium.webdriver.support.ui import WebDriverWait
 
 
@@ -36,4 +36,4 @@ def test_logout_from_personal_account(driver_with_state):
     logout_button.click()
     WebDriverWait(driver_with_state, 5).until(EC.visibility_of_element_located(LoginFormLocators().LOGIN_BUTTON))
 
-    assert driver_with_state.current_url == "https://stellarburgers.education-services.ru/login"
+    assert driver_with_state.current_url == AppRoute.LOGIN

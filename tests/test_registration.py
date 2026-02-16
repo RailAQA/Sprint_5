@@ -1,4 +1,5 @@
 from tools.generator import generate_email, generate_valid_password, generate_wrong_password_with_1_symbol, generate_wrong_password_with_4_symbols, generate_wrong_password_with_5_symbols
+from tools.routes import AppRoute
 from locators import GeneralLocators, RegistrationFormLocators, LoginFormLocators
 
 from selenium.webdriver.support import expected_conditions as EC
@@ -7,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 def test_successful_registration(driver):
-    driver.get("https://stellarburgers.education-services.ru/register")
+    driver.get(AppRoute.REGISTRATION)
     WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
 
     name_input = driver.find_element(*RegistrationFormLocators().NAME_INPUT)
@@ -25,7 +26,7 @@ def test_successful_registration(driver):
     registration_button.click()
     WebDriverWait(driver, 5).until(EC.visibility_of_element_located(LoginFormLocators().LOGIN_BUTTON))
 
-    assert driver.current_url == "https://stellarburgers.education-services.ru/login"
+    assert driver.current_url == AppRoute.LOGIN
 
 @pytest.mark.parametrize(
         "wrong_password", 
@@ -35,7 +36,7 @@ def test_successful_registration(driver):
                   generate_wrong_password_with_5_symbols()
                   ))
 def test_with_wrong_password(driver, wrong_password):
-    driver.get("https://stellarburgers.education-services.ru/register")
+    driver.get(AppRoute.REGISTRATION)
     WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
 
     name_input = driver.find_element(*RegistrationFormLocators().NAME_INPUT)

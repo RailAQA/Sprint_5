@@ -1,11 +1,13 @@
-from tools.generator import generate_email, generate_valid_password
 from locators import GeneralLocators, RegistrationFormLocators, LoginFormLocators, MainPageLocators, PasswordRecoveryFormLocators
+from tools.generator import generate_email, generate_valid_password
+from tools.routes import AppRoute
 
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
+
 def test_login_from_login_button(driver):
-    driver.get("https://stellarburgers.education-services.ru/register")
+    driver.get(AppRoute.REGISTRATION)
     WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
 
     name_input = driver.find_element(*RegistrationFormLocators().NAME_INPUT)
@@ -23,7 +25,7 @@ def test_login_from_login_button(driver):
     registration_button.click()
     WebDriverWait(driver, 5).until(EC.visibility_of_element_located(LoginFormLocators().LOGIN_BUTTON))
 
-    driver.get("https://stellarburgers.education-services.ru")
+    driver.get(AppRoute.CONSTRUCTOR)
     WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
 
     login_main_page_button = driver.find_element(*MainPageLocators().LOGIN_ACCOUNT_BUTTON)
@@ -43,7 +45,7 @@ def test_login_from_login_button(driver):
     assert driver.current_url == "https://stellarburgers.education-services.ru/"
 
 def test_login_from_personal_account_button(driver):
-    driver.get("https://stellarburgers.education-services.ru/register")
+    driver.get(AppRoute.REGISTRATION)
     WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
 
     name_input = driver.find_element(*RegistrationFormLocators().NAME_INPUT)
@@ -78,7 +80,7 @@ def test_login_from_personal_account_button(driver):
     assert driver.current_url == "https://stellarburgers.education-services.ru/"
 
 def test_login_from_registration_form_login_button(driver):
-    driver.get("https://stellarburgers.education-services.ru/register")
+    driver.get(AppRoute.REGISTRATION)
     WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
 
     name_input = driver.find_element(*RegistrationFormLocators().NAME_INPUT)
@@ -96,7 +98,7 @@ def test_login_from_registration_form_login_button(driver):
     registration_button.click()
     WebDriverWait(driver, 8).until(EC.visibility_of_element_located(LoginFormLocators().LOGIN_BUTTON))
 
-    driver.get("https://stellarburgers.education-services.ru/register")
+    driver.get(AppRoute.REGISTRATION)
     WebDriverWait(driver, 5).until(EC.visibility_of_element_located(RegistrationFormLocators().REGISTRATION_BUTTON))
 
     login_registration_form_button = driver.find_element(*RegistrationFormLocators().LOGIN_BUTTON)
@@ -116,7 +118,7 @@ def test_login_from_registration_form_login_button(driver):
     assert driver.current_url == "https://stellarburgers.education-services.ru/"
 
 def test_login_from_recovery_password_form(driver):
-    driver.get("https://stellarburgers.education-services.ru/register")
+    driver.get(AppRoute.REGISTRATION)
     WebDriverWait(driver, 3).until(EC.visibility_of_element_located(GeneralLocators().HEADER))
 
     name_input = driver.find_element(*RegistrationFormLocators().NAME_INPUT)
@@ -134,7 +136,7 @@ def test_login_from_recovery_password_form(driver):
     registration_button.click()
     WebDriverWait(driver, 8).until(EC.visibility_of_element_located(LoginFormLocators().LOGIN_BUTTON))
 
-    driver.get("https://stellarburgers.education-services.ru/forgot-password")
+    driver.get(AppRoute.RECOVERY_PASSWORD)
     WebDriverWait(driver, 5).until(EC.visibility_of_element_located(PasswordRecoveryFormLocators().RECOVERY_BUTTON))
 
     login_recovery_password_form = driver.find_element(*PasswordRecoveryFormLocators().LOGIN_BUTTON)
